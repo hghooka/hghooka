@@ -14,9 +14,8 @@ mp()  { claude plugin marketplace add "$1" || true; }   # idempotent: ignore "al
 ins() { claude plugin install "$1" || echo "FAILED: $1"; }
 
 # --- Native Claude plugins (namespaced => no name clashes between packs) ---
-mp claude-plugins-official 2>/dev/null || true          # usually preinstalled
-ins superpowers@claude-plugins-official                 # 2  obra/superpowers (official listing)
-ins mattpocock-skills@claude-plugins-official || { mp mattpocock/skills; ins mattpocock-skills@mattpocock; }  # 2 fallback = repo's own marketplace
+mp obra/superpowers-marketplace;   ins superpowers@superpowers-marketplace   # 5 (author's marketplace; the official-directory id is not reliable)
+mp mattpocock/skills;              ins mattpocock-skills@mattpocock          # 2
 mp DietrichGebert/ponytail;        ins ponytail@ponytail                 # 1
 mp ayghri/i-have-adhd;             ins i-have-adhd@i-have-adhd           # 3
 mp cathrynlavery/diagram-design;   ins diagram-design@diagram-design     # 6
